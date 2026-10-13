@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#541b32">
+  <title>Vida — You Have My Heart</title>
+  <meta name="description" content="A little website made with love for Vida.">
+  <style>
+    :root {
+      --wine: #541b32;
+      --berry: #8e3155;
+      --rose: #d77d91;
+      --blush: #f9e9ec;
+      --cream: #fffaf5;
+      --ink: #38242b;
+      --muted: #806b72;
+      --gold: #d8b878;
+      --white: #fff;
+      --shadow: 0 22px 60px rgba(84, 27, 50, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .topbar {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 5;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px clamp(20px, 6vw, 84px); color: white;
+    }
+    .brand { font-size: 1.2rem; letter-spacing: .12em; font-style: italic; }
+    .topbar a { text-decoration: none; font: 600 .8rem Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+    .hero {
+      min-height: 94vh; display: grid; place-items: center; position: relative; overflow: hidden;
+      padding: 110px 22px 80px; color: white; text-align: center;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(215,125,145,.45), transparent 38%),
+        radial-gradient(ellipse at 85% 75%, rgba(216,184,120,.19), transparent 35%),
+        linear-gradient(145deg, #321020 0%, #68243f 48%, #8c3b58 100%);
+    }
+    .hero::before, .hero::after {
+      content: "♡"; position: absolute; color: rgba(255,255,255,.08); line-height: 1;
+      font-family: Georgia, serif; pointer-events: none;
+    }
+    .hero::before { font-size: clamp(220px, 40vw, 520px); left: -7%; bottom: -12%; transform: rotate(-18deg); }
+    .hero::after { font-size: clamp(170px, 30vw, 390px); right: -5%; top: 12%; transform: rotate(17deg); }
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
+    .eyebrow { font: 600 .74rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .28em; color: #f1d7d9; }
+    h1 { font-weight: 400; line-height: 1.08; font-size: clamp(3.2rem, 9vw, 7.4rem); margin: 18px 0 20px; }
+    h1 span { color: #f2c6ce; font-style: italic; }
+    .hero p { font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 610px; margin: 0 auto 32px; color: #f9e9ec; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 13px 23px; border-radius: 999px; border: 1px solid transparent;
+      background: var(--cream); color: var(--wine); text-decoration: none;
+      font: 700 .83rem Arial, sans-serif; letter-spacing: .04em; cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #1b071344; }
+    .button.outline { color: white; background: transparent; border-color: #ffffff80; }
+    .hero .button-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .scroll-note { position: absolute; bottom: 22px; left: 0; right: 0; font: .72rem Arial, sans-serif; letter-spacing: .18em; color: #f1d7d9; text-transform: uppercase; }
+    section { padding: clamp(64px, 9vw, 112px) 22px; }
+    .section-inner { max-width: 1050px; margin: auto; }
+    .section-heading { text-align: center; max-width: 720px; margin: 0 auto 42px; }
+    .section-heading .eyebrow { color: var(--berry); }
+    h2 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.15; font-weight: 400; margin: 13px 0; color: var(--wine); }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .letter-section { background: var(--blush); }
+    .letter-card {
+      position: relative; max-width: 780px; margin: auto; padding: clamp(28px, 6vw, 62px);
+      background: rgba(255,255,255,.8); border: 1px solid #ead0d7; border-radius: 5px 26px 5px 26px;
+      box-shadow: var(--shadow);
+    }
+    .letter-card::before { content: "❦"; display: block; text-align: center; color: var(--rose); font-size: 2.2rem; margin-bottom: 12px; }
+    .letter-card p { font-size: clamp(1.02rem, 2vw, 1.16rem); }
+    .letter-card .signature { color: var(--berry); font-size: 1.55rem; font-style: italic; text-align: right; margin-top: 26px; }
+    .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .reason {
+      border: 1px solid #f0dce1; background: white; border-radius: 18px; padding: 25px 22px;
+      box-shadow: 0 10px 32px #541b3208; text-align: center;
+    }
+    .reason .icon { font-size: 2rem; }
+    .reason h3 { font-size: 1.35rem; color: var(--wine); margin: 10px 0 7px; font-weight: 400; }
+    .reason p { color: var(--muted); margin: 0; font-size: .98rem; }
+    .music-section { background: #f3e6dc; }
+    .music-list { max-width: 760px; margin: auto; display: grid; gap: 12px; }
+    .song {
+      display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 14px;
+      background: #fffaf5; border: 1px solid #e8d6c8;
+    }
+    .vinyl {
+      width: 54px; height: 54px; border-radius: 50%; flex: 0 0 54px;
+      background: repeating-radial-gradient(circle, #2d1b24 0 3px, #4b2a38 4px 6px);
+      display: grid; place-items: center; animation: spin 8s linear infinite;
+    }
+    .vinyl::after { content: ""; width: 13px; height: 13px; border-radius: 50%; background: var(--gold); border: 3px solid #f7e8d4; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .song strong { display: block; color: var(--wine); font-size: 1.05rem; font-weight: 400; }
+    .song span { display: block; color: var(--muted); font: .82rem Arial, sans-serif; margin-top: 3px; }
+    .song .heart { margin-left: auto; color: var(--berry); font-size: 1.25rem; }
+    .secret-section { text-align: center; background: #fffaf5; }
+    .secret-box { max-width: 720px; margin: auto; padding: clamp(28px, 5vw, 50px); border: 1px solid #e9cdd5; border-radius: 24px; background: white; box-shadow: var(--shadow); }
+    #secretMessage { display: none; margin: 25px auto 0; max-width: 520px; color: var(--berry); font-size: 1.3rem; font-style: italic; }
+    #secretMessage.show { display: block; animation: fadeIn .5s ease both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    footer { padding: 30px 20px; text-align: center; background: #321020; color: #f3dce2; font-size: .9rem; }
+    footer .tiny-heart { color: #ed9eaf; }
+    .floating-heart { position: fixed; bottom: -30px; z-index: 10; pointer-events: none; animation: floatUp 3.6s ease-in forwards; }
+    @keyframes floatUp { 0% { transform: translateY(0) rotate(0); opacity: 0; } 12% { opacity: .85; } 100% { transform: translateY(-105vh) rotate(28deg); opacity: 0; } }
+    @media (max-width: 760px) {
+      .reasons-grid { grid-template-columns: 1fr; }
+      .reason { padding: 22px; }
+      .topbar { padding: 18px 20px; }
+      .topbar a { font-size: .68rem; }
+      .hero { min-height: 88vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">for Vida ♡</div>
+    <a href="#letter">A little letter ↓</a>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="main-title">
+      <div class="hero-content">
+        <div class="eyebrow">A little corner of the internet, just for you</div>
+        <h1 id="main-title">My heart knows <span>Vida.</span></h1>
+        <p>Some feelings are too special to fit into one message. So I made you a little place where a few of them can live.</p>
+        <div class="button-row">
+          <a class="button" href="#letter">Open your letter <span aria-hidden="true">♡</span></a>
+          <button class="button outline" id="heartButton" type="button">Send a little love ✨</button>
+        </div>
+      </div>
+      <div class="scroll-note">made with care · just for you</div>
+    </section>
+
+    <section class="letter-section" id="letter">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div class="eyebrow">From my heart to yours</div>
+          <h2>A letter for Vida</h2>
+          <p>Read this whenever you need a little reminder of how special you are.</p>
+        </div>
+        <article class="letter-card">
+          <p>My Vida,</p>
+          <p>I wanted to make something a little different for you—not just another message on a screen, but a small reminder that you mean so much to me.</p>
+          <p>I love the way you can make an ordinary moment feel memorable. I love getting to know you, the little things that make you who you are, and the thought of all the beautiful memories still waiting to be made.</p>
+          <p>I can't promise that every day will be perfect, but I can promise to keep showing up with honesty, kindness, patience, and care. You deserve to feel appreciated, respected, and safe being exactly yourself.</p>
+          <p>And if a country song ever comes on and makes you smile, I hope a little part of you remembers this page—and the person who made it thinking about you.</p>
+          <p>Thank you for being you, Vida. This little website is only a tiny way of saying what my heart keeps trying to tell you: <em>you matter to me, more than these words can hold.</em></p>
+          <p class="signature">With all my heart, ♡</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="reasons">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div class="eyebrow">The little things</div>
+          <h2>Reasons you are special</h2>
+          <p>Not a complete list—just a few things worth celebrating.</p>
+        </div>
+        <div class="reasons-grid">
+          <article class="reason"><div class="icon" aria-hidden="true">🌷</div><h3>Your own kind of beautiful</h3><p>There is something lovely about the way you bring your own energy into a room and make moments feel like yours.</p></article>
+          <article class="reason"><div class="icon" aria-hidden="true">🎶</div><h3>The songs we love</h3><p>A good country song can hold a whole story. I like the thought of music becoming part of our memories.</p></article>
+          <article class="reason"><div class="icon" aria-hidden="true">✨</div><h3>The little moments</h3><p>Sometimes the smallest conversations and simplest laughs are the ones that stay with us the longest.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="music-section" id="songs">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div class="eyebrow">A soundtrack for you</div>
+          <h2>For the country-song girl</h2>
+          <p>A few classics to add to your listening list. Tap a song title to search for it on YouTube.</p>
+        </div>
+        <div class="music-list">
+          <a class="song" href="https://www.youtube.com/results?search_query=Kenny+Rogers+Through+the+Years" target="_blank" rel="noopener noreferrer"><div class="vinyl" aria-hidden="true"></div><div><strong>Through the Years</strong><span>Kenny Rogers · a song about lasting love</span></div><div class="heart" aria-hidden="true">♡</div></a>
+          <a class="song" href="https://www.youtube.com/results?search_query=Kenny+Rogers+Lady" target="_blank" rel="noopener noreferrer"><div class="vinyl" aria-hidden="true"></div><div><strong>Lady</strong><span>Kenny Rogers · a timeless classic</span></div><div class="heart" aria-hidden="true">♡</div></a>
+          <a class="song" href="https://www.youtube.com/results?search_query=Dolly+Parton+I+Will+Always+Love+You" target="_blank" rel="noopener noreferrer"><div class="vinyl" aria-hidden="true"></div><div><strong>I Will Always Love You</strong><span>Dolly Parton · heartfelt and unforgettable</span></div><div class="heart" aria-hidden="true">♡</div></a>
+          <a class="song" href="https://www.youtube.com/results?search_query=John+Denver+Annie%27s+Song" target="_blank" rel="noopener noreferrer"><div class="vinyl" aria-hidden="true"></div><div><strong>Annie's Song</strong><span>John Denver · gentle and sweet</span></div><div class="heart" aria-hidden="true">♡</div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secret-section">
+      <div class="section-inner">
+        <div class="secret-box">
+          <div class="eyebrow">Psst... one last thing</div>
+          <h2>A tiny secret note</h2>
+          <p>There's a little message tucked away here, just waiting for you to open it.</p>
+          <button class="button" id="secretButton" type="button" aria-expanded="false" aria-controls="secretMessage">Open your secret note ♡</button>
+          <p id="secretMessage">Vida, no website could ever say everything for me. But I hope this one makes you smile, because it was made with you in mind. Keep being wonderfully, unmistakably you. ♡</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with <span class="tiny-heart">♥</span> and a little country music, especially for Vida.
+  </footer>
+
+  <script>
+    const heartButton = document.getElementById('heartButton');
+    const secretButton = document.getElementById('secretButton');
+    const secretMessage = document.getElementById('secretMessage');
+
+    function floatHearts() {
+      const symbols = ['♡', '♥', '✧'];
+      for (let i = 0; i < 14; i++) {
+        window.setTimeout(() => {
+          const heart = document.createElement('span');
+          heart.className = 'floating-heart';
+          heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          heart.style.left = `${Math.random() * 94 + 3}%`;
+          heart.style.fontSize = `${18 + Math.random() * 22}px`;
+          heart.style.color = ['#d77d91', '#f2c6ce', '#d8b878'][Math.floor(Math.random() * 3)];
+          document.body.appendChild(heart);
+          window.setTimeout(() => heart.remove(), 3800);
+        }, i * 90);
+      }
+    }
+    heartButton.addEventListener('click', floatHearts);
+    secretButton.addEventListener('click', () => {
+      const isOpen = secretMessage.classList.toggle('show');
+      secretButton.setAttribute('aria-expanded', String(isOpen));
+      secretButton.textContent = isOpen ? 'Close your secret note ♡' : 'Open your secret note ♡';
+    });
+  </script>
+</body>
+</html>
