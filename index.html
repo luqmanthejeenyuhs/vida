@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,258 +5,1044 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#27151f">
 <title>Vida — You Have My Heart</title>
+
 <style>
-:root{color-scheme:light dark;--bg:light-dark(#fff7f0,#1b1118);--ink:light-dark(#422532,#fff1e8);--muted:light-dark(#856b75,#cbb6c0);--rose:light-dark(#bd526d,#f29ab0);--wine:light-dark(#61243c,#351726);--gold:light-dark(#c59c63,#e7c58b);--line:light-dark(#ead5dc,#4a303d);--card:light-dark(#fffaf7,#271923)}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
-.site{overflow:hidden;background:radial-gradient(ellipse at 10% 5%,light-dark(#f4d9df,#45202e),transparent 36%),radial-gradient(ellipse at 90% 48%,light-dark(#f5e4d0,#30202b),transparent 32%),var(--bg)}
-a,button{font:inherit}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,6vw,85px);font:.72rem Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase}
-.brand{color:var(--rose);font-weight:bold}
-.nav a{color:var(--muted);text-decoration:none;margin-left:22px}
-.hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:70px 20px 100px;position:relative}
-.eyebrow,.kicker{font:.68rem Arial,sans-serif;text-transform:uppercase;letter-spacing:.3em;color:var(--gold)}
-h1{font-size:clamp(4.4rem,14vw,10rem);line-height:.8;letter-spacing:-.075em;font-weight:400;margin:32px 0}
-h1 em{color:var(--rose);font-weight:400}
-.hero p{max-width:570px;margin:28px auto;color:var(--muted);font-size:clamp(1rem,2vw,1.2rem);line-height:1.9}
-.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-.btn{border:1px solid var(--rose);border-radius:999px;padding:14px 23px;background:var(--rose);color:#fff8f2;cursor:pointer;text-decoration:none;font:.78rem Arial,sans-serif;letter-spacing:.04em;transition:.25s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px #9d465326}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.floating{position:absolute;color:var(--rose);opacity:.65;font-size:25px;animation:drift 5s ease-in-out infinite}
-.f1{top:20%;left:12%}
-.f2{top:30%;right:13%;animation-delay:1s}
-.f3{bottom:20%;left:20%;animation-delay:2s}
-@keyframes drift{50%{transform:translateY(-18px) rotate(12deg)}}
-.scroll{position:absolute;bottom:25px;color:var(--muted);font:.62rem Arial,sans-serif;letter-spacing:.22em}
-section{padding:100px clamp(22px,8vw,120px)}
-.center{max-width:780px;text-align:center;margin:auto}
-.kicker{color:var(--rose)}
-h2{font-size:clamp(2.6rem,6vw,5.2rem);line-height:.98;font-weight:400;letter-spacing:-.055em;margin:22px 0 28px}
-h2 em{color:var(--rose);font-weight:400}
-.center>p,.copy{color:var(--muted);font-size:1.08rem;line-height:1.95}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}
-.card{border:1px solid var(--line);background:var(--card);padding:30px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;transition:.3s}
-.card:hover{transform:translateY(-6px);border-color:var(--rose)}
-.icon{font-size:2rem;color:var(--gold)}
-.card h3{font-size:1.55rem;font-weight:400;margin:25px 0 10px}
-.card p{color:var(--muted);font-size:.95rem;line-height:1.75;margin:0}
-.letter-wrap{background:linear-gradient(135deg,light-dark(#f2dfe0,#32202b),transparent)}
-.letter{max-width:760px;margin:auto;padding:clamp(28px,6vw,72px);border:1px solid var(--line);background:var(--card);position:relative;box-shadow:0 30px 80px #3013190b}
-.letter:after{content:'♡';position:absolute;right:25px;top:18px;color:var(--gold);font-size:1.5rem}
-.letter p{font-size:1.08rem;line-height:2}
-.signature{font-size:1.65rem;font-style:italic;color:var(--rose);margin-top:28px}
-.reasons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:35px}
-.reason{padding:19px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-align:left;cursor:pointer;transition:.2s}
-.reason:hover{border-color:var(--rose);transform:translateY(-2px)}
-.reason span{color:var(--rose);margin-right:10px}
-.reason-detail{min-height:64px;color:var(--muted);line-height:1.8;margin-top:22px}
-.music{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px;align-items:center}
-.vinyl{width:min(330px,75vw);aspect-ratio:1;border-radius:50%;margin:auto;background:repeating-radial-gradient(circle,#171316 0 2px,#30212b 3px 4px,#1e171d 5px 6px);display:grid;place-items:center;box-shadow:0 25px 60px #0003;animation:spin 16s linear infinite;animation-play-state:paused;cursor:pointer}
-.vinyl.playing{animation-play-state:running}
-.vinyl-center{width:32%;aspect-ratio:1;border-radius:50%;background:var(--wine);border:8px solid #c59a62;display:grid;place-items:center;color:#fff0e5;font-size:2rem}
-@keyframes spin{to{transform:rotate(360deg)}}
-.songs{display:grid;gap:10px;margin-top:24px}
-.song{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px;border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:.2s}
-.song:hover{border-color:var(--rose);background:var(--card)}
-.song small{display:block;color:var(--muted);font:.7rem Arial,sans-serif;margin-top:5px}
-.song b{font-weight:400}
-.song i{font-style:normal;color:var(--rose)}
-.final{background:var(--wine);color:#fff2eb;text-align:center;padding:100px 22px}
-.final h2{max-width:850px;margin:25px auto}
-.final p{max-width:600px;margin:auto;line-height:1.9;color:#e4c9d0}
-.final .btn{margin-top:28px;background:#fff2eb;color:#61243c;border-color:#fff2eb}
-.secret{display:none;max-width:650px;margin:28px auto 0;padding:24px;border:1px solid #ffffff55;line-height:1.9;color:#fff2eb}
-.secret.show{display:block;animation:appear .5s ease}
-@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-footer{text-align:center;padding:28px 20px;color:var(--muted);font:.68rem Arial,sans-serif;letter-spacing:.1em}
-.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--wine);color:#fff2eb;padding:13px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;z-index:10;font:.78rem Arial,sans-serif;max-width:90vw;text-align:center}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:700px){
-.nav{padding:18px 20px}
-.nav a{margin-left:9px;font-size:.58rem}
-.hero{min-height:80vh}
-.cards{grid-template-columns:1fr}
-.card{min-height:175px}
-.music{grid-template-columns:1fr;gap:35px}
-.vinyl{width:230px}
-.reasons{grid-template-columns:1fr}
-section{padding-top:75px;padding-bottom:75px}
-.f1{left:5%}
-.f2{right:5%}
+:root {
+    color-scheme: light dark;
+    --bg: light-dark(#fff7f0, #1b1118);
+    --ink: light-dark(#422532, #fff1e8);
+    --muted: light-dark(#856b75, #cbb6c0);
+    --rose: light-dark(#bd526d, #f29ab0);
+    --wine: light-dark(#61243c, #351726);
+    --gold: light-dark(#c59c63, #e7c58b);
+    --line: light-dark(#ead5dc, #4a303d);
+    --card: light-dark(#fffaf7, #271923);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.site {
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 10% 5%,
+            light-dark(#f4d9df, #45202e),
+            transparent 36%
+        ),
+        radial-gradient(
+            ellipse at 90% 48%,
+            light-dark(#f5e4d0, #30202b),
+            transparent 32%
+        ),
+        var(--bg);
+}
+
+a,
+button {
+    font: inherit;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px clamp(20px, 6vw, 85px);
+    font: 0.72rem Arial, sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.brand {
+    color: var(--rose);
+    font-weight: bold;
+}
+
+.nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 22px;
+}
+
+.hero {
+    min-height: 88vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 70px 20px 100px;
+    position: relative;
+}
+
+.eyebrow,
+.kicker {
+    font: 0.68rem Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+}
+
+h1 {
+    font-size: clamp(4.4rem, 14vw, 10rem);
+    line-height: 0.8;
+    letter-spacing: -0.075em;
+    font-weight: 400;
+    margin: 32px 0;
+}
+
+h1 em {
+    color: var(--rose);
+    font-weight: 400;
+}
+
+.hero p {
+    max-width: 570px;
+    margin: 28px auto;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.9;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn {
+    border: 1px solid var(--rose);
+    border-radius: 999px;
+    padding: 14px 23px;
+    background: var(--rose);
+    color: #fff8f2;
+    cursor: pointer;
+    text-decoration: none;
+    font: 0.78rem Arial, sans-serif;
+    letter-spacing: 0.04em;
+    transition: 0.25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px #9d465326;
+}
+
+.btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+}
+
+.floating {
+    position: absolute;
+    color: var(--rose);
+    opacity: 0.65;
+    font-size: 25px;
+    animation: drift 5s ease-in-out infinite;
+}
+
+.f1 {
+    top: 20%;
+    left: 12%;
+}
+
+.f2 {
+    top: 30%;
+    right: 13%;
+    animation-delay: 1s;
+}
+
+.f3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+@keyframes drift {
+    50% {
+        transform: translateY(-18px) rotate(12deg);
+    }
+}
+
+.scroll {
+    position: absolute;
+    bottom: 25px;
+    color: var(--muted);
+    font: 0.62rem Arial, sans-serif;
+    letter-spacing: 0.22em;
+}
+
+section {
+    padding: 100px clamp(22px, 8vw, 120px);
+}
+
+.center {
+    max-width: 780px;
+    text-align: center;
+    margin: auto;
+}
+
+.kicker {
+    color: var(--rose);
+}
+
+h2 {
+    font-size: clamp(2.6rem, 6vw, 5.2rem);
+    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    margin: 22px 0 28px;
+}
+
+h2 em {
+    color: var(--rose);
+    font-weight: 400;
+}
+
+.center > p,
+.copy {
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.95;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 50px;
+}
+
+.card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 30px;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--rose);
+}
+
+.icon {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.card h3 {
+    font-size: 1.55rem;
+    font-weight: 400;
+    margin: 25px 0 10px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.letter-wrap {
+    background: linear-gradient(
+        135deg,
+        light-dark(#f2dfe0, #32202b),
+        transparent
+    );
+}
+
+.letter {
+    max-width: 760px;
+    margin: auto;
+    padding: clamp(28px, 6vw, 72px);
+    border: 1px solid var(--line);
+    background: var(--card);
+    position: relative;
+    box-shadow: 0 30px 80px #3013190b;
+}
+
+.letter:after {
+    content: '♡';
+    position: absolute;
+    right: 25px;
+    top: 18px;
+    color: var(--gold);
+    font-size: 1.5rem;
+}
+
+.letter p {
+    font-size: 1.08rem;
+    line-height: 2;
+}
+
+.signature {
+    font-size: 1.65rem;
+    font-style: italic;
+    color: var(--rose);
+    margin-top: 28px;
+}
+
+.reasons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.reason {
+    padding: 19px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.reason:hover {
+    border-color: var(--rose);
+    transform: translateY(-2px);
+}
+
+.reason span {
+    color: var(--rose);
+    margin-right: 10px;
+}
+
+.reason-detail {
+    min-height: 64px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-top: 22px;
+}
+
+.music {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.vinyl {
+    width: min(330px, 75vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: auto;
+    background: repeating-radial-gradient(
+        circle,
+        #171316 0 2px,
+        #30212b 3px 4px,
+        #1e171d 5px 6px
+    );
+    display: grid;
+    place-items: center;
+    box-shadow: 0 25px 60px #0003;
+    animation: spin 16s linear infinite;
+    animation-play-state: paused;
+}
+
+.vinyl.playing {
+    animation-play-state: running;
+}
+
+.vinyl-center {
+    width: 32%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--wine);
+    border: 8px solid #c59a62;
+    display: grid;
+    place-items: center;
+    color: #fff0e5;
+    font-size: 2rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.songs {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.song {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 17px;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: 0.2s;
+}
+
+.song:hover {
+    border-color: var(--rose);
+    background: var(--card);
+}
+
+.song small {
+    display: block;
+    color: var(--muted);
+    font: 0.7rem Arial, sans-serif;
+    margin-top: 5px;
+}
+
+.song b {
+    font-weight: 400;
+}
+
+.song i {
+    font-style: normal;
+    color: var(--rose);
+}
+
+.final {
+    background: var(--wine);
+    color: #fff2eb;
+    text-align: center;
+    padding: 100px 22px;
+}
+
+.final h2 {
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+.final p {
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.9;
+    color: #e4c9d0;
+}
+
+.final .btn {
+    margin-top: 28px;
+    background: #fff2eb;
+    color: #61243c;
+    border-color: #fff2eb;
+}
+
+.secret {
+    display: none;
+    max-width: 650px;
+    margin: 28px auto 0;
+    padding: 24px;
+    border: 1px solid #ffffff55;
+    line-height: 1.9;
+    color: #fff2eb;
+}
+
+.secret.show {
+    display: block;
+    animation: appear 0.5s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 28px 20px;
+    color: var(--muted);
+    font: 0.68rem Arial, sans-serif;
+    letter-spacing: 0.1em;
+}
+
+.toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: var(--wine);
+    color: #fff2eb;
+    padding: 13px 20px;
+    border-radius: 999px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 10;
+    font: 0.78rem Arial, sans-serif;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@media (max-width: 700px) {
+    .nav {
+        padding: 18px 20px;
+    }
+
+    .nav a {
+        margin-left: 9px;
+        font-size: 0.58rem;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 175px;
+    }
+
+    .music {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .vinyl {
+        width: 230px;
+    }
+
+    .reasons {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+
+    .f1 {
+        left: 5%;
+    }
+
+    .f2 {
+        right: 5%;
+    }
 }
 </style>
 </head>
+
 <body>
 <main class="site">
+
 <nav class="nav">
-<div class="brand">✦ A PAGE FOR VIDA</div>
-<div><a href="#little-things">The little things</a><a href="#letter">My heart</a></div>
+    <div class="brand">✦ A PAGE FOR VIDA</div>
+
+    <div>
+        <a href="#little-things">The little things</a>
+        <a href="#letter">My heart</a>
+    </div>
 </nav>
 
 <header class="hero">
-<span class="floating f1">♡</span>
-<span class="floating f2">✧</span>
-<span class="floating f3">♡</span>
-<div>
-<div class="eyebrow">A little world made just for you</div>
-<h1>My heart<br><em>knows Vida.</em></h1>
-<p>Out of all the people, all the places, and all the little moments in this world, there's one person I wanted to make something beautiful for. That's you, Vida.</p>
-<div class="actions">
-<a class="btn" href="#letter">Read what’s in my heart ↗</a>
-<button class="btn ghost" id="heartBtn">Send a little love ♡</button>
-</div>
-</div>
-<div class="scroll">TAKE YOUR TIME · THIS IS FOR YOU</div>
+    <span class="floating f1">♡</span>
+    <span class="floating f2">✧</span>
+    <span class="floating f3">♡</span>
+
+    <div>
+        <div class="eyebrow">A little world made just for you</div>
+
+        <h1>
+            My heart<br>
+            <em>knows Vida.</em>
+        </h1>
+
+        <p>
+            Out of all the people, all the places, and all the little
+            moments in this world, there's one person I wanted to make
+            something beautiful for. That's you, Vida.
+        </p>
+
+        <div class="actions">
+            <a class="btn" href="#letter">
+                Read what’s in my heart ↗
+            </a>
+
+            <button class="btn ghost" id="heartBtn">
+                Send a little love ♡
+            </button>
+        </div>
+    </div>
+
+    <div class="scroll">
+        TAKE YOUR TIME · THIS IS FOR YOU
+    </div>
 </header>
 
 <section id="little-things">
-<div class="center">
-<div class="kicker">For the girl behind the name</div>
-<h2>Vida, you make ordinary moments feel <em>golden.</em></h2>
-<p>I wish I could gather every good feeling you've ever given me and turn it into something you could hold. Until I figure out how to do that, here's a little page that tries.</p>
-</div>
-<div class="cards">
-<article class="card">
-<div class="icon">☼</div>
-<div><h3>Your light</h3><p>There is something about you that stays on my mind long after a conversation ends. You have a place in my thoughts that no one else could fill.</p></div>
-</article>
-<article class="card">
-<div class="icon">♡</div>
-<div><h3>Your place in my heart</h3><p>You aren't just someone I care about. You're someone whose happiness matters to me, whose smile I want to protect, and whose dreams I want to cheer for.</p></div>
-</article>
-<article class="card">
-<div class="icon">✧</div>
-<div><h3>Our little moments</h3><p>It's the conversations, the laughter, the unexpected memories, and the simple moments with you that I wish I could keep in a little bottle forever.</p></div>
-</article>
-</div>
+    <div class="center">
+        <div class="kicker">For the girl behind the name</div>
+
+        <h2>
+            Vida, you make ordinary moments feel
+            <em>golden.</em>
+        </h2>
+
+        <p>
+            I wish I could gather every good feeling you've ever given
+            me and turn it into something you could hold. Until I figure
+            out how to do that, here's a little page that tries.
+        </p>
+    </div>
+
+    <div class="cards">
+        <article class="card">
+            <div class="icon">☼</div>
+
+            <div>
+                <h3>Your light</h3>
+
+                <p>
+                    There is something about you that stays on my mind
+                    long after a conversation ends. You have a place
+                    in my thoughts that no one else could fill.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="icon">♡</div>
+
+            <div>
+                <h3>Your place in my heart</h3>
+
+                <p>
+                    You aren't just someone I care about. You're
+                    someone whose happiness matters to me, whose smile
+                    I want to protect, and whose dreams I want to
+                    cheer for.
+                </p>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="icon">✧</div>
+
+            <div>
+                <h3>Our little moments</h3>
+
+                <p>
+                    It's the conversations, the laughter, the
+                    unexpected memories, and the simple moments
+                    with you that I wish I could keep in a little
+                    bottle forever.
+                </p>
+            </div>
+        </article>
+    </div>
 </section>
 
 <section class="letter-wrap" id="letter">
-<article class="letter">
-<div class="kicker">Vida, from my heart to yours</div>
-<h2>If you could see yourself through my eyes…</h2>
-<p>My Vida, I don't think a single webpage could ever hold all the things I want to tell you, but I wanted to try. I love you more than I sometimes know how to explain. You mean so much to me, and I hope my words and actions keep reminding you of that.</p>
-<p>I love the thought of seeing you happy. I love knowing there's a person like you in my world. Even the smallest things can remind me of you, and sometimes I catch myself wishing I could pause a beautiful moment just so it could last a little longer.</p>
-<p>I don't want my love to be only pretty words on a screen. I want it to be patience when a day is hard, support when you chase your dreams, honesty when we need it, laughter when life gets heavy, and care you can actually feel. I want you to feel respected, heard, appreciated, and free to be completely yourself.</p>
-<p>Vida, thank you for being you. Thank you for the moments we've shared and for the ones still waiting for us. If I could give you one thing, it would be the ability to see just how special you are to me. Until then, let this little corner of the internet say it for me: <em>you are loved, you are cherished, and you matter to me more than these words can hold.</em></p>
-<p>And if you ever have a day when you need a reminder, come back here. Read this again. Let it remind you that somewhere in this big, noisy world, there's a heart that is very happy it knows you.</p>
-<div class="signature">All my love, always. ♡</div>
-</article>
+    <article class="letter">
+        <div class="kicker">Vida, from my heart to yours</div>
+
+        <h2>If you could see yourself through my eyes…</h2>
+
+        <p>
+            My Vida, I don't think a single webpage could ever hold
+            all the things I want to tell you, but I wanted to try.
+            I love you more than I sometimes know how to explain.
+            You mean so much to me, and I hope my words and actions
+            keep reminding you of that.
+        </p>
+
+        <p>
+            I love the thought of seeing you happy. I love knowing
+            there's a person like you in my world. Even the smallest
+            things can remind me of you, and sometimes I catch myself
+            wishing I could pause a beautiful moment just so it could
+            last a little longer.
+        </p>
+
+        <p>
+            I don't want my love to be only pretty words on a screen.
+            I want it to be patience when a day is hard, support when
+            you chase your dreams, honesty when we need it, laughter
+            when life gets heavy, and care you can actually feel.
+            I want you to feel respected, heard, appreciated, and
+            free to be completely yourself.
+        </p>
+
+        <p>
+            Vida, thank you for being you. Thank you for the moments
+            we've shared and for the ones still waiting for us.
+            If I could give you one thing, it would be the ability
+            to see just how special you are to me. Until then, let
+            this little corner of the internet say it for me:
+            <em>you are loved, you are cherished, and you matter to
+            me more than these words can hold.</em>
+        </p>
+
+        <p>
+            And if you ever have a day when you need a reminder,
+            come back here. Read this again. Let it remind you that
+            somewhere in this big, noisy world, there's a heart that
+            is very happy it knows you.
+        </p>
+
+        <div class="signature">All my love, always. ♡</div>
+    </article>
 </section>
 
 <section id="reasons">
-<div class="center">
-<div class="kicker">A little interactive love note</div>
-<h2>Want to know <em>another reason?</em></h2>
-<p>Tap any of these. Each one has a little reminder waiting for you, Vida.</p>
-<div class="reasons">
-<button class="reason" data-message="Because being yourself is already something beautiful. You never have to pretend to be anyone else to be worthy of love. ♡"><span>01</span> Just because you're you</button>
-<button class="reason" data-message="Because your happiness matters to me. I want to celebrate your wins, encourage your dreams, and be kind to your heart. ♡"><span>02</span> Because your happiness matters</button>
-<button class="reason" data-message="Because little moments with you can become the memories I treasure most. It's not always about grand gestures. ♡"><span>03</span> Because of our little moments</button>
-<button class="reason" data-message="Because love is something I want to show, not just say: with respect, patience, honesty, effort, and care. ♡"><span>04</span> Because love should feel safe</button>
-</div>
-<div class="reason-detail" id="reasonDetail" aria-live="polite">Choose a reason above and let me tell you a little more…</div>
-</div>
+    <div class="center">
+        <div class="kicker">A little interactive love note</div>
+
+        <h2>
+            Want to know <em>another reason?</em>
+        </h2>
+
+        <p>
+            Tap any of these. Each one has a little reminder waiting
+            for you, Vida.
+        </p>
+
+        <div class="reasons">
+            <button
+                class="reason"
+                data-message="Because being yourself is already something beautiful. You never have to pretend to be anyone else to be worthy of love. ♡"
+            >
+                <span>01</span>
+                Just because you're you
+            </button>
+
+            <button
+                class="reason"
+                data-message="Because your happiness matters to me. I want to celebrate your wins, encourage your dreams, and be kind to your heart. ♡"
+            >
+                <span>02</span>
+                Because your happiness matters
+            </button>
+
+            <button
+                class="reason"
+                data-message="Because little moments with you can become the memories I treasure most. It's not always about grand gestures. ♡"
+            >
+                <span>03</span>
+                Because of our little moments
+            </button>
+
+            <button
+                class="reason"
+                data-message="Because love is something I want to show, not just say: with respect, patience, honesty, effort, and care. ♡"
+            >
+                <span>04</span>
+                Because love should feel safe
+            </button>
+        </div>
+
+        <div
+            class="reason-detail"
+            id="reasonDetail"
+            aria-live="polite"
+        >
+            Choose a reason above and let me tell you a little more…
+        </div>
+    </div>
 </section>
 
 <section id="music">
-<div class="music">
-<div class="vinyl" id="vinyl" title="Tap to spin the record">
-<div class="vinyl-center">♫</div>
-</div>
-<div>
-<div class="kicker">Songs that bring you to mind, Vida</div>
-<h2>Songs that <em>remind me of you.</em></h2>
-<p class="copy">A little collection of Kenyan love songs and Daniel Caesar's romantic R&amp;B for the moments when something plays and somehow, it feels like you. Tap any song to find it on YouTube.</p>
-<div class="songs">
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Njerae+Aki+Sioni"><span><b>Aki Sioni</b><small>Njerae · soulful Kenyan sound</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Mutoriah+Beta"><span><b>Beta</b><small>Mutoriah · Kenyan R&amp;B</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Okello+Max+Taya"><span><b>Taya</b><small>Okello Max · a warm Kenyan love song</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Bien+Chikwere"><span><b>Chikwere</b><small>Bien · tender Kenyan vocals</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Daniel+Caesar+Best+Part+H.E.R."><span><b>Best Part</b><small>Daniel Caesar feat. H.E.R. · tender and romantic</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Daniel+Caesar+Get+You+Kali+Uchis"><span><b>Get You</b><small>Daniel Caesar feat. Kali Uchis · dreamy romance</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Daniel+Caesar+Japanese+Denim"><span><b>Japanese Denim</b><small>Daniel Caesar · soft, intimate R&amp;B</small></span><i>↗</i></a>
-<a class="song" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Daniel+Caesar+Always"><span><b>Always</b><small>Daniel Caesar · a heartfelt love song</small></span><i>↗</i></a>
-</div>
-</div>
-</div>
+    <div class="music">
+        <div
+            class="vinyl"
+            id="vinyl"
+            title="Tap to spin the record"
+        >
+            <div class="vinyl-center">♫</div>
+        </div>
+
+        <div>
+            <div class="kicker">
+                Songs that bring you to mind, Vida
+            </div>
+
+            <h2>
+                Songs that <em>remind me of you.</em>
+            </h2>
+
+            <p class="copy">
+                A little collection of Kenyan love songs and Daniel
+                Caesar's romantic R&amp;B for the moments when
+                something plays and somehow, it feels like you.
+                Tap any song to find it on YouTube.
+            </p>
+
+            <div class="songs">
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Njerae+Aki+Sioni"
+                >
+                    <span>
+                        <b>Aki Sioni</b>
+                        <small>Njerae · soulful Kenyan sound</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Mutoriah+Beta"
+                >
+                    <span>
+                        <b>Beta</b>
+                        <small>Mutoriah · Kenyan R&amp;B</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Okello+Max+Taya"
+                >
+                    <span>
+                        <b>Taya</b>
+                        <small>Okello Max · a warm Kenyan love song</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Bien+Chikwere"
+                >
+                    <span>
+                        <b>Chikwere</b>
+                        <small>Bien · tender Kenyan vocals</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Daniel+Caesar+Best+Part+H.E.R."
+                >
+                    <span>
+                        <b>Best Part</b>
+                        <small>Daniel Caesar feat. H.E.R. · tender and romantic</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Daniel+Caesar+Get+You+Kali+Uchis"
+                >
+                    <span>
+                        <b>Get You</b>
+                        <small>Daniel Caesar feat. Kali Uchis · dreamy romance</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Daniel+Caesar+Japanese+Denim"
+                >
+                    <span>
+                        <b>Japanese Denim</b>
+                        <small>Daniel Caesar · soft, intimate R&amp;B</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+
+                <a
+                    class="song"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.youtube.com/results?search_query=Daniel+Caesar+Always"
+                >
+                    <span>
+                        <b>Always</b>
+                        <small>Daniel Caesar · a heartfelt love song</small>
+                    </span>
+                    <i>↗</i>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="final">
-<div class="kicker" style="color:#e7c58b">Before you go, Vida…</div>
-<h2>If I could leave you with one feeling, it would be this:</h2>
-<p>You don't have to do anything extraordinary to deserve tenderness. You don't have to have everything figured out. You can have imperfect days and still be wonderful. I hope life gives you a thousand reasons to smile, and I hope I get to add a few of them.</p>
-<button class="btn" id="secretBtn">Open one last little note ♡</button>
-<div class="secret" id="secret">Vida, I love you. Not just as a sentence to put on a pretty page, but as a feeling I want to honour through the way I treat you. I want to keep learning you, listening to you, laughing with you, and making memories worth looking back on. You are precious to me. If this page made you smile even a little, then it has done exactly what I hoped. ♡</div>
+    <div class="kicker" style="color:#e7c58b">
+        Just one more thing, Vida…
+    </div>
+
+    <h2>I love you so much. ♡</h2>
+
+    <p>
+        I love you more than I can put into words, and I especially
+        love your cute little giggles. They make me smile every time,
+        and honestly, I could listen to them forever. You make my
+        days sweeter just by being you, Vida, and I hope you always
+        know how much you mean to me. ❤️
+    </p>
+
+    <button class="btn" id="secretBtn">
+        Open one last little note ♡
+    </button>
+
+    <div class="secret" id="secret">
+        Vida, I love you. Not just as a sentence to put on a pretty
+        page, but as a feeling I want to honour through the way I
+        treat you. I want to keep learning you, listening to you,
+        laughing with you, and making memories worth looking back on.
+        You are precious to me. If this page made you smile even a
+        little, then it has done exactly what I hoped. ♡
+    </div>
 </section>
 
-<footer>MADE FOR VIDA · WITH A FULL HEART ♡</footer>
+<footer>
+    MADE FOR VIDA · WITH A FULL HEART ♡
+</footer>
+
 </main>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+></div>
 
 <script>
-const toast=document.getElementById('toast');
+const toast = document.getElementById('toast');
+
 let toastTimer;
 
-function showToast(message){
-  toast.textContent=message;
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>toast.classList.remove('show'),2800);
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
 }
 
-document.getElementById('heartBtn').addEventListener('click',()=>{
-  showToast('Vida, sending you the biggest little wave of love. ♡');
+/* Send a little love animation */
+document.getElementById('heartBtn').addEventListener('click', () => {
+    showToast('Vida, sending you the biggest little wave of love. ♡');
 
-  for(let i=0;i<22;i++){
-    const h=document.createElement('span');
-    h.textContent=['♡','✦','♥','✧'][i%4];
-    h.style.cssText=`position:fixed;z-index:10;left:${5+Math.random()*90}%;top:${25+Math.random()*65}%;font-size:${16+Math.random()*24}px;color:var(--rose);pointer-events:none;transition:transform 1.8s ease,opacity 1.8s ease`;
-    document.body.appendChild(h);
+    for (let i = 0; i < 22; i++) {
+        const h = document.createElement('span');
 
-    requestAnimationFrame(()=>{
-      h.style.transform=`translateY(-${100+Math.random()*180}px) rotate(${Math.random()*60-30}deg)`;
-      h.style.opacity='0';
+        h.textContent = ['♡', '✦', '♥', '✧'][i % 4];
+
+        h.style.cssText = `
+            position: fixed;
+            z-index: 10;
+            left: ${5 + Math.random() * 90}%;
+            top: ${25 + Math.random() * 65}%;
+            font-size: ${16 + Math.random() * 24}px;
+            color: var(--rose);
+            pointer-events: none;
+            transition: transform 1.8s ease, opacity 1.8s ease;
+        `;
+
+        document.body.appendChild(h);
+
+        requestAnimationFrame(() => {
+            h.style.transform = `
+                translateY(-${100 + Math.random() * 180}px)
+                rotate(${Math.random() * 60 - 30}deg)
+            `;
+
+            h.style.opacity = '0';
+        });
+
+        setTimeout(() => h.remove(), 1900);
+    }
+});
+
+/* Interactive reasons */
+document.querySelectorAll('.reason').forEach(button => {
+    button.addEventListener('click', () => {
+        document.getElementById('reasonDetail').textContent =
+            button.dataset.message;
+
+        showToast('A little reminder, just for you, Vida ♡');
     });
-
-    setTimeout(()=>h.remove(),1900);
-  }
 });
 
-document.querySelectorAll('.reason').forEach(button=>{
-  button.addEventListener('click',()=>{
-    document.getElementById('reasonDetail').textContent=button.dataset.message;
-    showToast('A little reminder, just for you, Vida ♡');
-  });
+/* Hidden love note */
+document.getElementById('secretBtn').addEventListener('click', () => {
+    const note = document.getElementById('secret');
+
+    note.classList.toggle('show');
+
+    document.getElementById('secretBtn').textContent =
+        note.classList.contains('show')
+            ? 'Keep this close, Vida ♡'
+            : 'Open one last little note ♡';
+
+    if (note.classList.contains('show')) {
+        note.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
+    }
 });
 
-document.getElementById('secretBtn').addEventListener('click',()=>{
-  const note=document.getElementById('secret');
-  note.classList.toggle('show');
+/* Vinyl animation */
+const vinyl = document.getElementById('vinyl');
 
-  document.getElementById('secretBtn').textContent=
-    note.classList.contains('show')
-    ?'Keep this close, Vida ♡'
-    :'Open one last little note ♡';
+vinyl.addEventListener('click', () => {
+    vinyl.classList.toggle('playing');
 
-  if(note.classList.contains('show')){
-    note.scrollIntoView({behavior:'smooth',block:'nearest'});
-  }
-});
-
-const vinyl=document.getElementById('vinyl');
-
-vinyl.addEventListener('click',()=>{
-  vinyl.classList.toggle('playing');
-
-  showToast(
-    vinyl.classList.contains('playing')
-    ?'Picture the warm sound of a Kenyan love song… ♫'
-    :'Let the moment linger, Vida ♡'
-  );
+    showToast(
+        vinyl.classList.contains('playing')
+            ? 'Picture the warm sound of a Kenyan love song… ♫'
+            : 'Let the moment linger, Vida ♡'
+    );
 });
 </script>
+
 </body>
 </html>
